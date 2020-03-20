@@ -46,10 +46,20 @@ function processSlots(input) {
 
 	let newDict = {};
 
+	// This function essentially creates an object that returns the elements for the given coordinates. 
+	// for example given the input 
+	// 	[1, 0, 0, 0, 1],
+	// 	[0, 1, 0, 1, 0],
+	// 	[0, 0, 1, 0, 0]
+	// ] 
+	// we can expect our newDict to look like this after the first row iteration
+	// {
+	// 	A: [1,0,0,0,1]
+	// }
+	// That array is then checked in Part 2
 	Object.keys(coordinatesToTraverse).forEach(combo => {
-		// console.log(coordinatesToTraverse[combo])
+
 		coordinatesToTraverse[combo].forEach(coordinate => {
-			// console.log(coordinate)
 			let x = coordinate[0]
 			let y = coordinate[1]
 			if (!newDict[combo]) {
@@ -60,13 +70,15 @@ function processSlots(input) {
 		})
 	})
 
-
+	// PART 2 
+	// a New object is created dictCounter that will essentially tally points for contiguous elements. For example given the first row
+	// [1,0,0,0,1] our object will look like this {1 : 1, 0: 3}. This object is then sent to our helper function for PART 3. 
 	Object.keys(newDict).forEach(ele => {
 		let dictCounter = {}
 		let counter = 1
 		for (let j = 0; j < 5; j++) {
 			let curr = newDict[ele][j]
-			let next = newDict[ele][j + 1] // if neighboring add to counter 
+			let next = newDict[ele][j + 1] // if neighboring element is the same, add to counter 
 			if (curr === next) {
 				counter += 1
 			} else {
@@ -74,14 +86,14 @@ function processSlots(input) {
 			}
 
 			if (dictCounter[curr]) { // if ele exists, then we check to update counter. 
-				dictCounter[curr] = Math.max(dictCounter[curr], counter)
+				dictCounter[curr] = Math.max(dictCounter[curr], counter) // update counter if the new counter is greater. 
 			} else {
 				dictCounter[curr] = counter
 			}
 
 
 		}
-
+		// PART 3 
 		totalPoints += calculatePoints(dictCounter)
 	})
 
@@ -89,9 +101,10 @@ function processSlots(input) {
 	return totalPoints
 };
 
-
+// helper function that calculates total points for that given row.
 function calculatePoints(row) {
 	let points = 0;
+	// this dictionairy references the point system given from the google doc. Additional point reward can be added here for future implementation.
 	const pointCounter = {
 		'1': { '3': 5, '4': 10, '5': 20 },
 		'2': { '3': 10, '4': 25, '5': 50 },
