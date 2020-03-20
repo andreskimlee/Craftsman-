@@ -1,3 +1,9 @@
+### Take note of when you start and let us know how long it took. There are two parts; complete as much as you can and send it back. Feel free to create any variables or helper functions you might need.
+    Total Time To Completion: 2 hours
+
+
+
+
 ## This is a digital advertising agency currently focusing on mobile ads. Does this interest you and why?
     Having worked closely in the marketing industry as well as previously having interacted with mobile ads (especially in video game applications, I think it really is interesting as the ads I have seen have become increasingly more interactive. They have been almost to the point where the ads mimick the real application that it is advertising. 
 
